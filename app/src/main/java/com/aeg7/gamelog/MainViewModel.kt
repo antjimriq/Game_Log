@@ -9,7 +9,7 @@ import com.aeg7.gamelog.Api.MainRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(app: Application) :ViewModel() {
-    private var _myGamesList = MutableLiveData<MutableList<Game>>()
+    private val _myGamesList = MutableLiveData<MutableList<Game>>()
     val myGamesList:LiveData<MutableList<Game>>
     get() = _myGamesList
     private val repository=MainRepository()

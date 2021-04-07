@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context=".DetailActivity">
         <ImageView
             android:id="@+id/game_logo"
             android:layout_margin="16dp"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            tools:src="@drawable/logo_super_mario_galaxy"/>
+            tools:src="@drawable/Logo_Super_Mario_Galaxy"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -49,4 +49,4 @@
             android:src="@drawable/ic_arrow"/>
     </LinearLayout>
 
-</RelativeLayout>
+</layout>
