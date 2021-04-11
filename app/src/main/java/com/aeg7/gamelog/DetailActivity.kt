@@ -13,6 +13,9 @@ import com.aeg7.gamelog.databinding.ActivityDetailBinding
 
 
 class DetailActivity : AppCompatActivity() {
+    companion object{
+        const val KEY="terremoto"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding=ActivityDetailBinding.inflate(layoutInflater)

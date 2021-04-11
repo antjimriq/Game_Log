@@ -1,4 +1,5 @@
 package com.aeg7.gamelog.Api
 
-class Features(val id:Long, val title:String, val plattform:String) {
+
+class Features(val results:List<Result>) {
 }

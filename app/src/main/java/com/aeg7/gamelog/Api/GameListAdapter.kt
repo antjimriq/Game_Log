@@ -1,5 +1,6 @@
 package com.aeg7.gamelog.Api
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.R
 
-class GameListAdapter():ListAdapter<Game, GameListAdapter.ViewHolder>(DiffCallback) {
+class GameListAdapter(val context: Context):ListAdapter<Game, GameListAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback: DiffUtil.ItemCallback<Game>() {
         override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
             return oldItem.id==newItem.id
@@ -22,7 +23,10 @@ class GameListAdapter():ListAdapter<Game, GameListAdapter.ViewHolder>(DiffCallba
             return oldItem==newItem
         }
     }
-    lateinit var onItemClickListener: AdapterView.OnItemClickListener
+    private lateinit var onItemClickListener: (game:Game) -> Unit
+    fun setOnclickListener (onItemClickListener: (game:Game)-> Unit){
+        this.onItemClickListener=onItemClickListener
+    }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.activity_detail, parent, false)
@@ -40,7 +44,6 @@ class GameListAdapter():ListAdapter<Game, GameListAdapter.ViewHolder>(DiffCallba
             private val plattformText = view.findViewById<TextView>(R.id.game_plattform)
             fun bind(game: Game) {
                 nameText.text = game.name
-                plattformText.text = game.plattform
                 //val icon = when (game) {//TODO enlazar para que la imagen la coja de la database
                 }
             }

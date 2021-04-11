@@ -8,7 +8,7 @@ import retrofit2.http.Query
 //7e8c32c7ac3140cd94a143252b925b94
 interface ApiService {
     @GET("api/games")
-    suspend fun listGames(@Query ("key")key:String): String
+    suspend fun listGames(@Query("key")key:String): GamesJsonResponse
 }
 
 private var retrofit = Retrofit.Builder()
