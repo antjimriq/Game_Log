@@ -14,7 +14,7 @@ private lateinit var INSTANCE:GamesDatabase
 fun getDatabase(context: Context):GamesDatabase{
     synchronized(GamesDatabase::class.java){
         if (!::INSTANCE.isInitialized){
-            INSTANCE= Room.databaseBuilder(context.applicationContext,GamesDatabase::class.java,"games db").build()
+            INSTANCE= Room.databaseBuilder(context.applicationContext,GamesDatabase::class.java,"games_db").build()
         }
         return INSTANCE
 }

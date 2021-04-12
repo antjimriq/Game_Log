@@ -10,8 +10,8 @@ import com.aeg7.gamelog.Game
 @Dao
 interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(tmList: MutableList<Game>)
+    fun insertAll(GameList: MutableList<Game>)
 
     @Query("SELECT * FROM games")
-    fun getTerremotos(): LiveData<MutableList<Game>>
+    fun getGames(): LiveData<MutableList<Game>>
 }

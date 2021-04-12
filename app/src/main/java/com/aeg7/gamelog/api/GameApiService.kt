@@ -1,6 +1,7 @@
-package com.aeg7.gamelog.Api
+package com.aeg7.gamelog.api
 
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,7 +14,7 @@ interface ApiService {
 
 private var retrofit = Retrofit.Builder()
     .baseUrl("https://api.rawg.io/")
-    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create())
     .build()
 
 var service: ApiService = retrofit.create<ApiService>(

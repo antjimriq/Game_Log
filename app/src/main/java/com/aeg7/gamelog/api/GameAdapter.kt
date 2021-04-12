@@ -1,10 +1,9 @@
-package com.aeg7.gamelog.Api
+package com.aeg7.gamelog.api
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.R
 
-class GameListAdapter(val context: Context):ListAdapter<Game, GameListAdapter.ViewHolder>(DiffCallback) {
+class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback: DiffUtil.ItemCallback<Game>() {
         override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
             return oldItem.id==newItem.id
@@ -29,7 +28,7 @@ class GameListAdapter(val context: Context):ListAdapter<Game, GameListAdapter.Vi
     }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.activity_detail, parent, false)
+                .inflate(R.layout.activity_my_games_detail, parent, false)
             return ViewHolder(view)
         }
 

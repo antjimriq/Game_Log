@@ -1,28 +1,33 @@
-package com.aeg7.gamelog
+package com.aeg7.gamelog.layouts
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.View.inflate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aeg7.gamelog.Api.GameListAdapter
-import com.aeg7.gamelog.databinding.ActivityMainBinding
+import com.aeg7.gamelog.api.GameAdapter
+import com.aeg7.gamelog.Game
+import com.aeg7.gamelog.MainViewModel
+import com.aeg7.gamelog.MainViewModelFactory
+import com.aeg7.gamelog.databinding.ActivityMyGamesBinding
 
-class MainActivity : AppCompatActivity() {
+class MyGamesActivity : AppCompatActivity() {
+    private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMyGamesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.myGamesRecycler.layoutManager=LinearLayoutManager(this)
-        val adapter = GameListAdapter(this)
+        val adapter = GameAdapter(this)
         binding.myGamesRecycler.adapter = adapter
         adapter.setOnclickListener {
             openDetailActivity(it)
         }
-        val viewModel: MainViewModel = ViewModelProvider(this, MainViewModelFactory(application)).get(MainViewModel::class.java)
+        viewModel= ViewModelProvider(this,
+            MainViewModelFactory(application)
+        ).get(MainViewModel::class.java)
         viewModel.myGamesList.observe(this, Observer { myGamesList ->
             adapter.submitList(myGamesList)
             handelEmptyList(myGamesList, binding)
@@ -30,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun handelEmptyList(
         myGamesList: MutableList<Game>,
-        binding: ActivityMainBinding
+        binding: ActivityMyGamesBinding
     ) {
         if (myGamesList.isEmpty()) {
             binding.emptyList.visibility = View.VISIBLE
@@ -39,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun openDetailActivity (game: Game){
-        val intent=Intent(this,DetailActivity::class.java)
-        intent.putExtra(DetailActivity.KEY,game)
+        val intent=Intent(this, MyGamesDetailActivity::class.java)
+        intent.putExtra(MyGamesDetailActivity.KEY,game)
         startActivity(intent)
     }
 }

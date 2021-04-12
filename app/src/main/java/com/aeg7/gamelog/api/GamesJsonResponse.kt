@@ -1,4 +1,4 @@
-package com.aeg7.gamelog.Api
+package com.aeg7.gamelog.api
 
 class GamesJsonResponse(val results:List<Result>) {
 }

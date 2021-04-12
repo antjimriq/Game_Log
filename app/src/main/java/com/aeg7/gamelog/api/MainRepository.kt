@@ -1,18 +1,28 @@
-package com.aeg7.gamelog.Api
+package com.aeg7.gamelog.api
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.aeg7.gamelog.Game
+import com.aeg7.gamelog.database.GamesDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 private val key = "7e8c32c7ac3140cd94a143252b925b94"
-class MainRepository {
+class MainRepository(private val database:GamesDatabase) {
 
     suspend fun importGames():MutableList<Game>{
         return withContext(Dispatchers.IO){
             val gamesJsonResponse= service.listGames(key)
             Log.d("List_of_Games",gamesJsonResponse.toString())
             val listGames= parseResult(gamesJsonResponse)
-            mutableListOf<Game>()
+            database.gameDao.insertAll(listGames)
+            listGames.forEach { println(it) }
+            listGames
+        }
+    }
+
+    suspend fun gamesfromDB(): LiveData<MutableList<Game>> {
+        return withContext(Dispatchers.IO){
+        database.gameDao.getGames()
         }
     }
 
