@@ -17,5 +17,4 @@ class MainViewModel(app: Application) :AndroidViewModel(app) {
             _myGamesList.value=repository.importGames()
         }
     }
-
 }
