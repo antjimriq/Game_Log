@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".GameDetails"></activity>
-        <activity android:name=".layouts.GamesListDetailActivity" />
-        <activity android:name=".layouts.GameListActivity" />
-        <activity android:name=".layouts.MyGamesActivity">
+        <activity android:name=".layouts.MyGamesListDetailActivity" />
+        <activity android:name=".layouts.MyGamesListActivity" />
+        <activity android:name=".layouts.GameListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

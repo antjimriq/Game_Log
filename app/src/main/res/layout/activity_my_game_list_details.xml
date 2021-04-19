@@ -5,7 +5,7 @@
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".layouts.GamesListDetailActivity"
+    tools:context=".layouts.MyGamesListDetailActivity"
     android:orientation="horizontal">
         <LinearLayout
             android:layout_width="wrap_content"

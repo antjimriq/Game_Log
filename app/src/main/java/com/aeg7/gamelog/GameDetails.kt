@@ -3,12 +3,23 @@ package com.aeg7.gamelog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.CheckBox
+import android.widget.Spinner
 
 class GameDetails : AppCompatActivity() {
+    companion object{
+        const val KEY = "7e8c32c7ac3140cd94a143252b925b94"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_details)
+        val states = resources.getStringArray(R.array.States)
+        val spinner:Spinner = findViewById(R.id.game_status)
+        if (spinner != null){
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,states)
+            spinner.adapter=adapter
+        }
     }
     fun CheckBoxClicked (view:View){
         if (view is CheckBox){
@@ -58,9 +69,8 @@ class GameDetails : AppCompatActivity() {
         }
     }
     fun showDatePicked(view: View){
-        val newDate= DatePicker()
-        newDate.show(supportFragmentManager,"datePicker")
-
+        DatePicker().show(supportFragmentManager,"datePicker")
     }
+
 
 }

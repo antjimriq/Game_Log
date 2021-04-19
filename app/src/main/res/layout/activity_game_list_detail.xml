@@ -5,7 +5,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".layouts.MyGamesDetailActivity"
         android:padding="16dp">
         <ImageView
             android:id="@+id/game_logo"

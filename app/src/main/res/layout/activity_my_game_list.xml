@@ -8,14 +8,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".layouts.MyGamesActivity">
-
+        tools:context=".layouts.MyGamesListActivity">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/my_games_recycler"
+            android:id="@+id/game_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/empty_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -24,7 +22,8 @@
             android:textSize="24sp"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="@string/no_games_on_my_list"/>
+            android:text="@string/no_games_in_game_list"/>
+
     </FrameLayout>
 
 </layout>
