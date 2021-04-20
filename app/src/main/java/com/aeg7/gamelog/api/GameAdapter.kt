@@ -43,6 +43,7 @@ class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder
             private val plattformText = view.findViewById<TextView>(R.id.game_plattform)
             fun bind(game: Game) {
                 nameText.text = game.name
+                plattformText.text=game.platform
                 //val icon = when (game) {//TODO enlazar para que la imagen la coja de la database
                 }
             }

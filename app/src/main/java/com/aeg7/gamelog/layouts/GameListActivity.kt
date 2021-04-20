@@ -4,8 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +13,6 @@ import com.aeg7.gamelog.GameDetails
 import com.aeg7.gamelog.MainViewModel
 import com.aeg7.gamelog.MainViewModelFactory
 import com.aeg7.gamelog.databinding.ActivityGameListBinding
-import kotlinx.android.synthetic.main.activity_game_details.*
 
 class GameListActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -23,12 +20,6 @@ class GameListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityGameListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,States)
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        game_status.adapter=adapter
-        game_status.onItemClickListener = object: AdapterView.OnItemClickListener{
-            text_view.text=
-        }
         binding.myGamesRecycler.layoutManager=LinearLayoutManager(this)
         val adapter = GameAdapter(this)
         binding.myGamesRecycler.adapter = adapter

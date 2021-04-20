@@ -34,7 +34,8 @@ class MainRepository(private val database:GamesDatabase) {
         for (result in results){
             val id= result.id
             val name= result.name
-            gameList.add(Game(id,name))
+            val platform= result.platform
+            gameList.add(Game(id,name,platform))
         }
         return gameList
     }
