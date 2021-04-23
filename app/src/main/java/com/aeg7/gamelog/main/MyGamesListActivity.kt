@@ -1,4 +1,4 @@
-package com.aeg7.gamelog.layouts
+package com.aeg7.gamelog.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

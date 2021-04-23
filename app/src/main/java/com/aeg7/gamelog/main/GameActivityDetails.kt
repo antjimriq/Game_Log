@@ -1,4 +1,4 @@
-package com.aeg7.gamelog
+package com.aeg7.gamelog.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.Spinner
+import com.aeg7.gamelog.DatePicker
+import com.aeg7.gamelog.R
 
-class GameDetails : AppCompatActivity() {
+class GameActivityDetails : AppCompatActivity() {
     companion object{
         const val KEY = "7e8c32c7ac3140cd94a143252b925b94"
     }

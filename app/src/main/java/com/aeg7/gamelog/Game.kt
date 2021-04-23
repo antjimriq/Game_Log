@@ -7,5 +7,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "games")
-data class Game(@PrimaryKey val id:Long, val name:String, val platform: String):Parcelable {
+data class Game(
+    @PrimaryKey val id: Long,
+    val name: String,
+    val logo:String?,
+    val platform: List<String>
+):Parcelable {
 }

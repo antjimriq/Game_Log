@@ -1,12 +1,12 @@
 package com.aeg7.gamelog.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.aeg7.gamelog.Converters
 import com.aeg7.gamelog.Game
 
 @Database(entities = [Game::class],version = 1)
+@TypeConverters(Converters::class)
 abstract class GamesDatabase: RoomDatabase(){
 abstract val gameDao: GameDao
 }

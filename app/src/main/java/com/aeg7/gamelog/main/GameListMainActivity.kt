@@ -1,4 +1,4 @@
-package com.aeg7.gamelog.layouts
+package com.aeg7.gamelog.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,12 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aeg7.gamelog.api.GameAdapter
 import com.aeg7.gamelog.Game
-import com.aeg7.gamelog.GameDetails
 import com.aeg7.gamelog.MainViewModel
 import com.aeg7.gamelog.MainViewModelFactory
 import com.aeg7.gamelog.databinding.ActivityGameListBinding
 
-class GameListActivity : AppCompatActivity() {
+class GameListMainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +25,7 @@ class GameListActivity : AppCompatActivity() {
         adapter.setOnclickListener {
             openGameListDetailActivity(it)
         }
-        viewModel= ViewModelProvider(this,
-            MainViewModelFactory(application)
-        ).get(MainViewModel::class.java)
+        viewModel= ViewModelProvider(this, MainViewModelFactory(application)).get(MainViewModel::class.java)
         viewModel.myGamesList.observe(this, Observer { myGamesList ->
             adapter.submitList(myGamesList)
             handelEmptyList(myGamesList, binding)
@@ -45,8 +42,8 @@ class GameListActivity : AppCompatActivity() {
         }
     }
     private fun openGameListDetailActivity (game: Game){
-        val intent=Intent(this, GameDetails::class.java)
-        intent.putExtra(GameDetails.KEY,game)
+        val intent=Intent(this, GameActivityDetails::class.java)
+        intent.putExtra(GameActivityDetails.KEY,game)
         startActivity(intent)
     }
 }

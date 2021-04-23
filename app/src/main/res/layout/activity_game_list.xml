@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".layouts.GameListActivity">
+        tools:context=".main.GameListMainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_games_recycler"
