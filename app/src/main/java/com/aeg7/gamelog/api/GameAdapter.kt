@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aeg7.gamelog.Game
+import com.aeg7.gamelog.GlideApp
 import com.aeg7.gamelog.R
-import com.bumptech.glide.Glide
 
 class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback: DiffUtil.ItemCallback<Game>() {
@@ -38,19 +38,20 @@ class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder
             holder.bind(game)
         }
 
-       inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            private val logoImage = view.findViewById<ImageView>(R.id.game_logo)
-            private val nameText = view.findViewById<TextView>(R.id.game_name)
-            private val plattformText = view.findViewById<TextView>(R.id.game_plattform)
-            private val arrow=view.findViewById<ImageView>(R.id.arrow)
-            fun bind(game: Game) {
-                nameText.text = game.name
-                plattformText.text=game.platform.joinToString { "/" }
-                Glide.with(context).load(game.logo).into(logoImage)
-                arrow.setOnClickListener {
-                    onItemClickListener(game)
-                }
-                //val icon = when (game) {//TODO enlazar para que la imagen la coja de la database
-                }
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val logoImage = view.findViewById<ImageView>(R.id.game_logo)
+        private val nameText = view.findViewById<TextView>(R.id.game_name)
+        private val plattformText = view.findViewById<TextView>(R.id.game_plattform)
+        private val arrow=view.findViewById<ImageView>(R.id.arrow)
+        fun bind(game: Game) {
+            nameText.text = game.name
+            plattformText.text = game.platform.joinToString("/")
+            GlideApp.with(context).load(game.logo).into(logoImage)
+
+            arrow.setOnClickListener {
+                onItemClickListener(game)
             }
+        }
+
+    }
         }

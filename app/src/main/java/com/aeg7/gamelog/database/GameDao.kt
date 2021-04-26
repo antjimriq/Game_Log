@@ -13,5 +13,5 @@ interface GameDao {
     fun insertAll(GameList: MutableList<Game>)
 
     @Query("SELECT * FROM games")
-    fun getGames(): LiveData<MutableList<Game>>
+    fun getGames(): MutableList<Game>
 }

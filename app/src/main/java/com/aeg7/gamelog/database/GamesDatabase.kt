@@ -8,7 +8,7 @@ import com.aeg7.gamelog.Game
 @Database(entities = [Game::class],version = 1)
 @TypeConverters(Converters::class)
 abstract class GamesDatabase: RoomDatabase(){
-abstract val gameDao: GameDao
+    abstract val gameDao: GameDao
 }
 private lateinit var INSTANCE:GamesDatabase
 fun getDatabase(context: Context):GamesDatabase{

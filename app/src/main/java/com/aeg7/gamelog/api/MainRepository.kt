@@ -1,26 +1,28 @@
 package com.aeg7.gamelog.api
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.database.GamesDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 private val key = "7e8c32c7ac3140cd94a143252b925b94"
+private val page_size="5"
 class MainRepository(private val database:GamesDatabase) {
 
     suspend fun importGames():MutableList<Game>{
         return withContext(Dispatchers.IO){
-            val gamesJsonResponse= service.listGames(key)
-            Log.d("List_of_Games",gamesJsonResponse.toString())
-            val listGames= parseResult(gamesJsonResponse)
-            database.gameDao.insertAll(listGames)
-            listGames.forEach { println(it) }
-            listGames
+            for (page in 1..40) {
+                val gamesJsonResponse = service.listGames(key,page_size,page.toString())
+                Log.d("List_of_Games", gamesJsonResponse.toString())
+                val listGames = parseResult(gamesJsonResponse)
+                database.gameDao.insertAll(listGames)
+            }
+            println(database.gameDao.getGames().toString())
+            database.gameDao.getGames()
         }
     }
 
-    suspend fun gamesfromDB(): LiveData<MutableList<Game>> {
+    suspend fun gamesfromDB(): MutableList<Game> {
         return withContext(Dispatchers.IO){
         database.gameDao.getGames()
         }

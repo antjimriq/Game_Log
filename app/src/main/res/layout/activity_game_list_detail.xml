@@ -19,7 +19,8 @@
             android:orientation="vertical"
             android:layout_marginEnd="16dp"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/game_logo">
+            android:layout_toEndOf="@id/game_logo"
+            android:layout_toStartOf="@id/arrow">
             <TextView
                 android:id="@+id/game_name"
                 android:layout_marginTop="8dp"
