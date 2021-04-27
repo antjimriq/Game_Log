@@ -53,18 +53,45 @@
         <ImageView
             android:layout_width="128dp"
             android:layout_height="128dp"
-            tools:src="@drawable/Logo_Super_Mario_Galaxy"/>
+            tools:src="@drawable/logo_super_mario"/>
             <Button
                 android:id="@+id/starting_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Starting date"
-                android:onClick="showDatePicked"/>
+                android:onClick="showDatePicked" />
         </LinearLayout>
         <Spinner
             android:id="@+id/game_status"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkox"/>
+        <LinearLayout
+            android:id="@+id/spinners"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/game_status">
+            <Spinner
+                android:id="@+id/mark"
+                android:layout_width="128dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"/>
+            <Spinner
+                android:id="@+id/platform"
+                android:layout_width="128dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinners"
+            android:layout_margin="16dp"
+            android:text="Extra comments"/>
     </RelativeLayout>
 
 

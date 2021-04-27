@@ -39,7 +39,8 @@ class MainRepository(private val database:GamesDatabase) {
             val plataformas= mutableListOf<String>()
             for (plataforma in result.platforms)
                 plataformas.add(plataforma.platform.name)
-            gameList.add(Game(id,name,result.backgorund_image,plataformas))
+
+            gameList.add(Game(id,name,result.background_image,plataformas))
         }
         return gameList
     }

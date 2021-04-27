@@ -12,7 +12,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_centerVertical="true"
-            tools:src="@drawable/Logo_Super_Mario_Galaxy"/>
+            android:src="@drawable/logo_super_mario"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

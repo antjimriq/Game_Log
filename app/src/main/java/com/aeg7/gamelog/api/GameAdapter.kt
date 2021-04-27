@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.GlideApp
 import com.aeg7.gamelog.R
+import com.bumptech.glide.Glide
 
 class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder>(DiffCallback) {
     companion object DiffCallback: DiffUtil.ItemCallback<Game>() {

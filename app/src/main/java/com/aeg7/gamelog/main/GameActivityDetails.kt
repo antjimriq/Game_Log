@@ -16,11 +16,23 @@ class GameActivityDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_details)
-        val states = resources.getStringArray(R.array.States)
-        val spinner:Spinner = findViewById(R.id.game_status)
-        if (spinner != null){
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,states)
-            spinner.adapter=adapter
+        val status = resources.getStringArray(R.array.Status)
+        val spinnerStatus:Spinner = findViewById(R.id.game_status)
+        if (spinnerStatus != null){
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,status)
+            spinnerStatus.adapter=adapter
+        }
+        val mark= resources.getStringArray(R.array.Mark)
+        val spinnerMark:Spinner= findViewById(R.id.mark)
+        if (spinnerMark !=null){
+            val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,mark)
+            spinnerMark.adapter=adapter
+        }
+        val platform=resources.getStringArray(R.array.Platform)
+        val spinnerPlatform:Spinner=findViewById(R.id.platform)
+        if (spinnerPlatform != null){
+            val adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,platform)
+            spinnerPlatform.adapter=adapter
         }
     }
     fun CheckBoxClicked (view:View){
