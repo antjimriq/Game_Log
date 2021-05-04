@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.GameActivityDetails"></activity>
+        <activity android:name=".main.GameDetailsActivity"></activity>
         <activity android:name=".main.MyGamesListDetailActivity" />
         <activity android:name=".main.MyGamesListActivity" />
         <activity android:name=".main.GameListMainActivity">

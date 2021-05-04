@@ -7,15 +7,30 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.Spinner
 import com.aeg7.gamelog.DatePicker
+import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.R
+import com.bumptech.glide.Glide
 
-class GameActivityDetails : AppCompatActivity() {
+class GameDetailsActivity : AppCompatActivity() {
     companion object{
         const val KEY = "7e8c32c7ac3140cd94a143252b925b94"
+        const val GAME_KEY = "game"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_details)
+
+        //Recibimos el intent que se envia desde GameListMainActivity con la función openGameListDetailActivity
+        val game = intent?.extras?.getParcelable<Game>(GAME_KEY)
+        println("aquiiiiii------------------------------------"+game?.logo)
+
+        if(game?.logo?.isNotEmpty() == true){
+            Glide.with(this).load(game?.logo).into(findViewById(R.id.logoDetails))
+        }else{
+            Glide.with(this).load("https://www.ferexpo.cl/images/contenido-no-disponible.jpg").into(findViewById(R.id.logoDetails))
+        }
+
+
         val status = resources.getStringArray(R.array.Status)
         val spinnerStatus:Spinner = findViewById(R.id.game_status)
         if (spinnerStatus != null){
@@ -28,10 +43,12 @@ class GameActivityDetails : AppCompatActivity() {
             val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,mark)
             spinnerMark.adapter=adapter
         }
-        val platform=resources.getStringArray(R.array.Platform)
+        val platforms= game?.platform
         val spinnerPlatform:Spinner=findViewById(R.id.platform)
         if (spinnerPlatform != null){
-            val adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,platform)
+            val adapter= platforms?.let {
+                ArrayAdapter(this,android.R.layout.simple_spinner_item, it)
+            }
             spinnerPlatform.adapter=adapter
         }
     }

@@ -42,8 +42,8 @@ class GameListMainActivity : AppCompatActivity() {
         }
     }
     private fun openGameListDetailActivity (game: Game){
-        val intent=Intent(this, GameActivityDetails::class.java)
-        intent.putExtra(GameActivityDetails.KEY,game)
+        val intent=Intent(this, GameDetailsActivity::class.java)
+        intent.putExtra(GameDetailsActivity.GAME_KEY,game)
         startActivity(intent)
     }
 }
