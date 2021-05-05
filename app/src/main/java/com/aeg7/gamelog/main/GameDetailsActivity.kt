@@ -3,13 +3,14 @@ package com.aeg7.gamelog.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import android.widget.Spinner
+import android.widget.*
 import com.aeg7.gamelog.DatePicker
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.R
+import com.aeg7.gamelog.api.MainRepository
+import com.aeg7.gamelog.database.getDatabase
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.Dispatchers
 
 class GameDetailsActivity : AppCompatActivity() {
     companion object{
@@ -51,7 +52,34 @@ class GameDetailsActivity : AppCompatActivity() {
             }
             spinnerPlatform.adapter=adapter
         }
+
+        findViewById<Button>(R.id.save_button).setOnClickListener{
+            saveData(game)
+        }
     }
+
+    private fun saveData(game: Game?) {
+        if (findViewById<EditText>(R.id.platform).toString().isNotEmpty()){
+            game?.preferences?.console == findViewById<EditText>(R.id.platform).toString()
+        }
+
+        game?.preferences?.mark = findViewById<EditText>(R.id.mark)
+
+        if (findViewById<Spinner>(R.id.game_status).toString() == ""){
+            game?.preferences?.status == findViewById<EditText>(R.id.game_status).toString()
+        }
+        game?.preferences?.comments == findViewById<EditText>(R.id.comments).toString()
+        game?.preferences?.ownership == findViewById<CheckBox>(R.id.ownership).toString()
+        game?.preferences?.physicalCopy == findViewById<CheckBox>(R.id.physical_copy).toString()
+        game?.preferences?.digitalCopy == findViewById<CheckBox>(R.id.digital_copy).toString()
+        game?.preferences?.collectors == findViewById<CheckBox>(R.id.collectors_edition).toString()
+        game?.preferences?.extra == findViewById<CheckBox>(R.id.dlc).toString()
+        game?.preferences?.date == findViewById<Button>(R.id.starting_date).toString()
+
+
+
+    }
+
     fun CheckBoxClicked (view:View){
         if (view is CheckBox){
             val checked: Boolean = view.isChecked
@@ -102,6 +130,5 @@ class GameDetailsActivity : AppCompatActivity() {
     fun showDatePicked(view: View){
         DatePicker().show(supportFragmentManager,"datePicker")
     }
-
 
 }

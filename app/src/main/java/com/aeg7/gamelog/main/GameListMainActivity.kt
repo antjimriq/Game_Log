@@ -11,10 +11,17 @@ import com.aeg7.gamelog.api.GameAdapter
 import com.aeg7.gamelog.Game
 import com.aeg7.gamelog.MainViewModel
 import com.aeg7.gamelog.MainViewModelFactory
+import com.aeg7.gamelog.api.MainRepository
+import com.aeg7.gamelog.database.getDatabase
 import com.aeg7.gamelog.databinding.ActivityGameListBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class GameListMainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
+    private var gameList = ArrayList<Game>()
+    private var GameListMainActivity = mutableListOf<Game>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityGameListBinding.inflate(layoutInflater)
@@ -30,6 +37,16 @@ class GameListMainActivity : AppCompatActivity() {
             adapter.submitList(myGamesList)
             handelEmptyList(myGamesList, binding)
         })
+        val database = getDatabase(application)
+        val repository = MainRepository(database, application)
+
+        runBlocking {
+            launch(Dispatchers.IO) {
+                repository.updateGames(gameList)
+                GameListMainActivity=repository.selectGames()
+                adapter.submitList(GameListMainActivity)
+            }
+        }
     }
     private fun handelEmptyList(
         myGamesList: MutableList<Game>,
