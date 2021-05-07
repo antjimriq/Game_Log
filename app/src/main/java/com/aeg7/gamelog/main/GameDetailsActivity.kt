@@ -1,5 +1,6 @@
 package com.aeg7.gamelog.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,8 @@ import com.aeg7.gamelog.api.MainRepository
 import com.aeg7.gamelog.database.getDatabase
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class GameDetailsActivity : AppCompatActivity() {
     companion object{
@@ -59,22 +62,36 @@ class GameDetailsActivity : AppCompatActivity() {
     }
 
     private fun saveData(game: Game?) {
-        if (findViewById<EditText>(R.id.platform).toString().isNotEmpty()){
-            game?.preferences?.console == findViewById<EditText>(R.id.platform).toString()
+        game?.preferences?.console = findViewById<Spinner>(R.id.platform).toString()
+
+        game?.preferences?.mark = findViewById<Spinner>(R.id.mark).toString()
+
+        game?.preferences?.status = findViewById<Spinner>(R.id.game_status).toString()
+        game?.preferences?.comments = findViewById<EditText>(R.id.comments).toString()
+        game?.preferences?.ownership = findViewById<CheckBox>(R.id.ownership).toString()
+        game?.preferences?.physicalCopy = findViewById<CheckBox>(R.id.physical_copy).toString()
+        game?.preferences?.digitalCopy = findViewById<CheckBox>(R.id.digital_copy).toString()
+        game?.preferences?.collectors = findViewById<CheckBox>(R.id.collectors_edition).toString()
+        game?.preferences?.extra = findViewById<CheckBox>(R.id.dlc).toString()
+        game?.preferences?.date = findViewById<Button>(R.id.starting_date).toString()
+
+        //El juego iría a mi lista
+        game?.myGame=true
+
+        val database= getDatabase(application)
+        val repository= MainRepository(database, application)
+
+        runBlocking {
+            launch(Dispatchers.IO){
+                if (game != null) {
+                    repository.updateOneGame(game)
+                }
+            }
         }
 
-        game?.preferences?.mark = findViewById<EditText>(R.id.mark)
-
-        if (findViewById<Spinner>(R.id.game_status).toString() == ""){
-            game?.preferences?.status == findViewById<EditText>(R.id.game_status).toString()
-        }
-        game?.preferences?.comments == findViewById<EditText>(R.id.comments).toString()
-        game?.preferences?.ownership == findViewById<CheckBox>(R.id.ownership).toString()
-        game?.preferences?.physicalCopy == findViewById<CheckBox>(R.id.physical_copy).toString()
-        game?.preferences?.digitalCopy == findViewById<CheckBox>(R.id.digital_copy).toString()
-        game?.preferences?.collectors == findViewById<CheckBox>(R.id.collectors_edition).toString()
-        game?.preferences?.extra == findViewById<CheckBox>(R.id.dlc).toString()
-        game?.preferences?.date == findViewById<Button>(R.id.starting_date).toString()
+        val intent= Intent(this, MyGamesListActivity::class.java)
+        intent.putExtra(MyGamesListActivity.MYGAMES_KEY,game)
+        startActivity(intent)
 
 
 

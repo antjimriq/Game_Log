@@ -40,7 +40,7 @@ class Converters {
                         listOfString[4]?.let { it4 ->
                             listOfString[5]?.let { it5 ->
                                 listOfString[6]?.let { it6 ->
-                                    listOfString[7]?.toInt()?.let { it7 ->
+                                    listOfString[7]?.let { it7 ->
                                         listOfString[8]?.let { it8 ->
                                             listOfString[9]?.let { it9 ->
                                                 UserPreferences(

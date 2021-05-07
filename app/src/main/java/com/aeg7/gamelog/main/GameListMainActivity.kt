@@ -60,7 +60,7 @@ class GameListMainActivity : AppCompatActivity() {
     }
     private fun openGameListDetailActivity (game: Game){
         val intent=Intent(this, GameDetailsActivity::class.java)
-        intent.putExtra(GameDetailsActivity.GAME_KEY,game)
+        //intent.putExtra(GameDetailsActivity.GAME_KEY,game)
         startActivity(intent)
     }
 }

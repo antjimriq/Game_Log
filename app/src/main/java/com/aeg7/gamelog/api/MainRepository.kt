@@ -39,29 +39,15 @@ class MainRepository(private val database:GamesDatabase, val application: Applic
     suspend fun updateGames(gameList: MutableList<Game>){
         return withContext(Dispatchers.IO){
             for (game in gameList){
-                if(game.preferences.collectors == "true"){
-                    database.gameDao.updateGame(game)
-                } else if (!(game.preferences.comments == "" )){
-                    database.gameDao.updateGame(game)
-                } else if (!(game.preferences.console == "")){
-                    database.gameDao.updateGame(game)
-                } else if (!(game.preferences.date == "")) {
-                    database.gameDao.updateGame(game)
-                } else if (!(game.preferences.status == "")){
-                    database.gameDao.updateGame(game)
-                } else if (game.preferences.digitalCopy == "true"){
-                    database.gameDao.updateGame(game)
-                } else if (game.preferences.extra == "true"){
-                    database.gameDao.updateGame(game)
-                } else if (game.preferences.mark != 0){
-                    database.gameDao.updateGame(game)
-                } else if (game.preferences.ownership == "true"){
-                    database.gameDao.updateGame(game)
-                } else if (game.preferences.physicalCopy == "true"){
-                    database.gameDao.updateGame(game)
+                database.gameDao.updateGame(game)
             }
         }
     }
+
+    suspend fun updateOneGame(game: Game){
+        return withContext(Dispatchers.IO){
+                database.gameDao.updateGame(game)
+        }
     }
 
     private fun parseResult(gamesJsonResponse: GamesJsonResponse):MutableList<Game>{

@@ -12,7 +12,7 @@ class UserPreferences(
     var extra: String = "false",
     var date: String = "",
     var status: String ="",
-    var mark: Int = 0,
+    var mark: String = "0",
     var console: String = "",
     var comments: String = "") : Parcelable {
 }
