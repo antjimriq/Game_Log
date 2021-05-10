@@ -26,7 +26,6 @@ class GameDetailsActivity : AppCompatActivity() {
 
         //Recibimos el intent que se envia desde GameListMainActivity con la función openGameListDetailActivity
         val game = intent?.extras?.getParcelable<Game>(GAME_KEY)
-        println("aquiiiiii------------------------------------"+game?.logo)
 
         if(game?.logo?.isNotEmpty() == true){
             Glide.with(this).load(game?.logo).into(findViewById(R.id.logoDetails))
@@ -56,6 +55,15 @@ class GameDetailsActivity : AppCompatActivity() {
             spinnerPlatform.adapter=adapter
         }
 
+        if (game?.preferences?.ownership == "true"){
+            findViewById<CheckBox>(R.id.ownership).isChecked=true
+        }else{
+            findViewById<CheckBox>(R.id.ownership).isChecked=false
+        }
+
+        findViewById<EditText>(R.id.comments).text=game?.preferences?.comments.toString()
+
+
         findViewById<Button>(R.id.save_button).setOnClickListener{
             saveData(game)
         }
@@ -78,19 +86,25 @@ class GameDetailsActivity : AppCompatActivity() {
         //El juego iría a mi lista
         game?.myGame=true
 
+        println("aquii el juego------------------------------------- $game")
+
         val database= getDatabase(application)
         val repository= MainRepository(database, application)
+        var listamisjuegos= mutableListOf<Game>()
 
         runBlocking {
             launch(Dispatchers.IO){
                 if (game != null) {
                     repository.updateOneGame(game)
+                    listamisjuegos=repository.selectMyGames()
                 }
             }
         }
 
+        println("aquii el listamisjuegos------------------------------------- $listamisjuegos")
+
         val intent= Intent(this, MyGamesListActivity::class.java)
-        intent.putExtra(MyGamesListActivity.MYGAMES_KEY,game)
+        //intent.putExtra(MyGamesListActivity.MYGAMES_KEY,game)
         startActivity(intent)
 
 

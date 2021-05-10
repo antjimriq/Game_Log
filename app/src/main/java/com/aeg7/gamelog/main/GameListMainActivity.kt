@@ -20,7 +20,6 @@ import kotlinx.coroutines.runBlocking
 
 class GameListMainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
-    private var gameList = ArrayList<Game>()
     private var GameListMainActivity = mutableListOf<Game>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,6 @@ class GameListMainActivity : AppCompatActivity() {
 
         runBlocking {
             launch(Dispatchers.IO) {
-                repository.updateGames(gameList)
                 GameListMainActivity=repository.selectGames()
                 adapter.submitList(GameListMainActivity)
             }
@@ -60,7 +58,7 @@ class GameListMainActivity : AppCompatActivity() {
     }
     private fun openGameListDetailActivity (game: Game){
         val intent=Intent(this, GameDetailsActivity::class.java)
-        //intent.putExtra(GameDetailsActivity.GAME_KEY,game)
+        intent.putExtra(GameDetailsActivity.GAME_KEY,game)
         startActivity(intent)
     }
 }

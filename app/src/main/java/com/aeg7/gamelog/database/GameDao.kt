@@ -14,4 +14,7 @@ interface GameDao {
 
     @Update
     fun updateGame(vararg game: Game)
+
+    @Query("SELECT * FROM games WHERE myGame = 1")
+    fun getMyGames():MutableList<Game>
 }

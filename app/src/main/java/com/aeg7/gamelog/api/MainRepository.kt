@@ -36,6 +36,14 @@ class MainRepository(private val database:GamesDatabase, val application: Applic
         }
     }
 
+    suspend fun selectMyGames(): MutableList<Game> {
+        return withContext(Dispatchers.IO){
+            val gameList = database.gameDao.getMyGames()
+            gameList
+        }
+    }
+
+
     suspend fun updateGames(gameList: MutableList<Game>){
         return withContext(Dispatchers.IO){
             for (game in gameList){
@@ -59,11 +67,12 @@ class MainRepository(private val database:GamesDatabase, val application: Applic
             val id= result.id
             val name= result.name
             val plataformas= mutableListOf<String>()
-            for (plataforma in result.platforms)
+            for (plataforma in result.platforms){
                 plataformas.add(plataforma.platform.name)
-
+            }
             gameList.add(Game(id,name,result.background_image,plataformas))
         }
+
         return gameList
     }
 }
