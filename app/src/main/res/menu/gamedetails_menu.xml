@@ -12,7 +12,7 @@
         android:id="@+id/mygames_menu"
         android:title="My Games"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_videogame_asset" />
+        android:icon="@drawable/ic_baseline_videogame" />
 
     <item
         android:id= "@+id/save_button"
