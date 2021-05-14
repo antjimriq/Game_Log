@@ -2,14 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.GameActivityDetails">
+    tools:context=".main.GameDetailsActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/checkox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width= "wrap_content"
+            android:layout_height= "wrap_content"
             android:layout_margin="16dp"
             android:orientation="vertical">
             <CheckBox
@@ -51,15 +51,18 @@
             android:orientation="vertical"
             android:layout_centerHorizontal="true">
         <ImageView
+            android:id="@+id/logoDetails"
             android:layout_width="128dp"
             android:layout_height="128dp"
             tools:src="@drawable/logo_super_mario"/>
-            <Button
-                android:id="@+id/starting_date"
+            <EditText
+                android:id="@+id/edit_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="date"
                 android:text="Starting date"
-                android:onClick="showDatePicked" />
+                android:focusable="false"
+                android:clickable="true" />
         </LinearLayout>
         <Spinner
             android:id="@+id/game_status"
@@ -91,7 +94,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/spinners"
             android:layout_margin="16dp"
-            android:text="Extra comments"/>
+            android:hint="Extra comments"/>
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="256dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="64dp"
+            android:text="Save"
+            android:fontFamily=""
+            android:textSize="32dp"/>
     </RelativeLayout>
 
 

@@ -47,7 +47,13 @@ class GameAdapter(val context: Context):ListAdapter<Game, GameAdapter.ViewHolder
         fun bind(game: Game) {
             nameText.text = game.name
             plattformText.text = game.platform.joinToString("/")
-            GlideApp.with(context).load(game.logo).into(logoImage)
+
+            if(game?.logo?.isNotEmpty() == true){
+                Glide.with(context).load(game.logo).into(logoImage)
+            }else{
+                Glide.with(context).load("https://www.ferexpo.cl/images/contenido-no-disponible.jpg").into(logoImage)
+            }
+
 
             arrow.setOnClickListener {
                 onItemClickListener(game)
