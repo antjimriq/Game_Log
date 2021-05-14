@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+<<<<<<< HEAD
         android:id="@+id/home_menu"
         android:title="Home"
         app:showAsAction="always"
@@ -14,5 +15,11 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_videogame_asset"/>
 
+=======
+        android:id="@+id/save_menu"
+        android:title="Save"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_save"/>
+>>>>>>> origin/master
 
 </menu>

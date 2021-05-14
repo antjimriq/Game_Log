@@ -1,7 +1,10 @@
 package com.aeg7.gamelog.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.aeg7.gamelog.Game
 
 @Dao
@@ -11,13 +14,4 @@ interface GameDao {
 
     @Query("SELECT * FROM games")
     fun getGames(): MutableList<Game>
-
-    @Update
-    fun updateGame(game: Game)
-
-    @Query("SELECT * FROM games WHERE myGame = 1")
-    fun getMyGames():MutableList<Game>
-
-    @Query("SELECT COUNT(*) FROM games")
-    fun dbExists():Int
 }
